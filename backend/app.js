@@ -7,16 +7,16 @@ const path = require('path');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const app = express();
-require('dotenv').config();
+require('dotenv').config()
 
 
 // mongoose connect
-mongoose.connect('mongodb+srv://p6:PASSWORD@cluster0.4jt5jv8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-    { useNewUrlParser: true,
-     useUnifiedTopology: true 
-    })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+mongoose.connect(process.env.DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 // CORS - partage de ressources entre serveurs
 app.use((req, res, next) => 
