@@ -8,10 +8,13 @@ const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require("helmet");
 const app = express();
 require('dotenv').config()
+const mdp = process.env.BDD_MDP;
+const name = process.env.BDD_NAME;
+
 
 
 // mongoose connect
-mongoose.connect(process.env.DB_URI, {
+mongoose.connect('mongodb+srv://p6:"mdp"@"name"/myFirstDatabase?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
