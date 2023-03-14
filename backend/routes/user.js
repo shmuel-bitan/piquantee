@@ -5,7 +5,7 @@ const userCtrl = require('../controllers/user');
 
 const passLimiter = rateLimit({
     windowMs: 2 * 60 * 1000, // Temps défini (en minutes) pour tester l'application
-    max: 3 // essais max par adresse ip
+    max: 5// essais max par adresse ip
   });
 
 //routes POST pour créer un compte ou se connecter envoyé par le frontend
