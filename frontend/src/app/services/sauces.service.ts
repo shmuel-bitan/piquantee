@@ -61,21 +61,21 @@ export class SaucesService {
 
   modifySauce(id: string, sauce: Sauce, image: string | File) {
     if (typeof image === 'string') {
-      return this.http.put<{ message: string }>('http://localhost:3000/api/sauces/' + id, sauce).pipe(
+      return this.http.put<{ message: string }>('https://bc-22pc.onrender.com/api/sauces/' + id, sauce).pipe(
         catchError(error => throwError(error.error.message))
       );
     } else {
       const formData = new FormData();
       formData.append('sauce', JSON.stringify(sauce));
       formData.append('image', image);
-      return this.http.put<{ message: string }>('http://localhost:3000/api/sauces/' + id, formData).pipe(
+      return this.http.put<{ message: string }>('https://bc-22pc.onrender.com/api/sauces/' + id, formData).pipe(
         catchError(error => throwError(error.error.message))
       );
     }
   }
 
   deleteSauce(id: string) {
-    return this.http.delete<{ message: string }>('http://localhost:3000/api/sauces/' + id).pipe(
+    return this.http.delete<{ message: string }>('https://bc-22pc.onrender.com/api/sauces/' + id).pipe(
       catchError(error => throwError(error.error.message))
     );
   }
