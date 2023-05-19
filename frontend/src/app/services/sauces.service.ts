@@ -15,7 +15,7 @@ export class SaucesService {
               private auth: AuthService) {}
 
   getSauces() {
-    this.http.get<Sauce[]>('http://localhost:3000/api/sauces').pipe(
+    this.http.get<Sauce[]>('https://bc-22pc.onrender.com/api/sauces').pipe(
       tap(sauces => this.sauces$.next(sauces)),
       catchError(error => {
         console.error(error.error.message);
@@ -25,14 +25,14 @@ export class SaucesService {
   }
 
   getSauceById(id: string) {
-    return this.http.get<Sauce>('http://localhost:3000/api/sauces/' + id).pipe(
+    return this.http.get<Sauce>('https://bc-22pc.onrender.com/api/sauces/' + id).pipe(
       catchError(error => throwError(error.error.message))
     );
   }
 
   likeSauce(id: string, like: boolean) {
     return this.http.post<{ message: string }>(
-      'http://localhost:3000/api/sauces/' + id + '/like',
+      'https://bc-22pc.onrender.com/api/sauces/' + id + '/like',
       { userId: this.auth.getUserId(), like: like ? 1 : 0 }
     ).pipe(
       mapTo(like),
@@ -42,7 +42,7 @@ export class SaucesService {
 
   dislikeSauce(id: string, dislike: boolean) {
     return this.http.post<{ message: string }>(
-      'http://localhost:3000/api/sauces/' + id + '/like',
+      'https://bc-22pc.onrender.com/api/sauces/' + id + '/like',
       { userId: this.auth.getUserId(), like: dislike ? -1 : 0 }
     ).pipe(
       mapTo(dislike),
@@ -54,7 +54,7 @@ export class SaucesService {
     const formData = new FormData();
     formData.append('sauce', JSON.stringify(sauce));
     formData.append('image', image);
-    return this.http.post<{ message: string }>('http://localhost:3000/api/sauces', formData).pipe(
+    return this.http.post<{ message: string }>('https://bc-22pc.onrender.com/api/sauces', formData).pipe(
       catchError(error => throwError(error.error.message))
     );
   }
